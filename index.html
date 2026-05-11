@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Mother's Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Dancing+Script:wght@500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --pink-light: #fde8f0;
+  --pink-mid:   #f7b8d3;
+  --pink-deep:  #e8719a;
+  --rose:       #d4547a;
+  --lavender:   #e8d5f5;
+  --lilac:      #c8a8e9;
+  --peach:      #ffd6c0;
+  --text-mid:   #8a5070;
+  --text-dark:  #5a3050;
+}
+
+body { font-family:'Lato',sans-serif; color:var(--text-dark); overflow-x:hidden; min-height:100vh; }
+
+/* gradient bg */
+.bg-gradient {
+  position:fixed; inset:0; z-index:-2;
+  background: linear-gradient(135deg,#fff0f8 0%,#fde8f0 20%,#f5e6ff 40%,#ffe8d6 60%,#e8f5ff 80%,#fde8f0 100%);
+  background-size:400% 400%;
+  animation:gradShift 14s ease infinite;
+}
+@keyframes gradShift {
+  0%   { background-position:0% 50%; }
+  50%  { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+/* float layer */
+#float-layer { position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
+
+.floater {
+  position:absolute; bottom:-140px;
+  animation:floatUp linear infinite;
+  opacity:0; pointer-events:none; user-select:none;
+}
+.floater.emoji { font-size:1.3rem; line-height:1; }
+.floater.photo img {
+  border-radius:12px;
+  box-shadow:0 4px 18px rgba(212,84,122,0.18);
+  object-fit:cover; display:block;
+  border:3px solid rgba(255,255,255,0.8);
+}
+
+@keyframes floatUp {
+  0%   { transform:translateX(0) translateY(0) rotate(0deg);      opacity:0; }
+  8%   { opacity:0.65; }
+  92%  { opacity:0.4; }
+  100% { transform:translateX(var(--drift,0px)) translateY(-112vh) rotate(12deg); opacity:0; }
+}
+
+/* ── Homepage ── */
+#homepage {
+  min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:2rem; position:relative;
+}
+
+.corner-decor { position:absolute; width:190px; opacity:0.48; pointer-events:none; }
+.corner-decor.tl { top:0; left:0; }
+.corner-decor.tr { top:0; right:0; transform:scaleX(-1); }
+.corner-decor.bl { bottom:0; left:0; transform:scaleY(-1); }
+.corner-decor.br { bottom:0; right:0; transform:scale(-1,-1); }
+
+.hero-content {
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:1.5rem;
+  animation:fadeUp 1.2s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(36px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,10vw,7rem);
+  font-weight:700; line-height:1.02;
+  color:var(--rose);
+  text-shadow:0 2px 28px rgba(212,84,122,0.14);
+  animation:fadeUp 1s ease 0.25s both;
+}
+.hero-title .italic { font-style:italic; color:var(--pink-deep); }
+
+.divider { display:flex; align-items:center; gap:0.8rem; animation:fadeUp 1s ease 0.45s both; }
+.divider-line { width:80px; height:2px; background:linear-gradient(to right,transparent,var(--pink-mid),transparent); }
+.heart-icon { color:var(--rose); font-size:1.6rem; animation:heartbeat 1.4s ease infinite; }
+@keyframes heartbeat {
+  0%,100% { transform:scale(1); }
+  15%     { transform:scale(1.3); }
+  30%     { transform:scale(1); }
+  45%     { transform:scale(1.15); }
+  60%     { transform:scale(1); }
+}
+
+.message-card {
+  background:rgba(255,255,255,0.74);
+  border:1.5px solid rgba(232,113,154,0.22);
+  border-radius:24px;
+  padding:1.6rem 2.4rem; max-width:500px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 8px 40px rgba(212,84,122,0.1);
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(1rem,2.4vw,1.18rem);
+  color:var(--text-mid); line-height:1.75;
+  animation:fadeUp 1s ease 0.65s both;
+}
+
+.cta-btn {
+  display:inline-flex; align-items:center; gap:0.6rem;
+  padding:1rem 2.8rem;
+  background:linear-gradient(135deg,var(--pink-deep),var(--rose));
+  color:#fff;
+  font-family:'Dancing Script',cursive; font-size:1.45rem;
+  border:none; border-radius:50px; cursor:pointer;
+  box-shadow:0 6px 24px rgba(212,84,122,0.35);
+  transition:transform 0.2s,box-shadow 0.2s;
+  animation:fadeUp 1s ease 0.85s both;
+  position:relative; overflow:hidden;
+}
+.cta-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.18),transparent); }
+.cta-btn:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 14px 36px rgba(212,84,122,0.45); }
+.cta-btn:active { transform:scale(0.97); }
+.btn-arrow { animation:bounce 1.5s ease infinite; display:inline-block; }
+@keyframes bounce { 0%,100%{transform:translateX(0);} 50%{transform:translateX(5px);} }
+
+/* ── Journey ── */
+#journey-page { display:none; min-height:100vh; padding-bottom:6rem; }
+#journey-page.active { display:block; }
+
+.journey-header {
+  text-align:center; padding:4rem 2rem 2rem;
+  background:linear-gradient(180deg,rgba(253,232,240,0.9) 0%,transparent 100%);
+}
+.journey-header h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,5vw,3rem); color:var(--rose); font-style:italic;
+}
+.journey-header p { font-family:'Dancing Script',cursive; font-size:1.25rem; color:var(--text-mid); margin-top:0.3rem; }
+
+.back-btn {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  margin:2rem 2rem 0; padding:0.6rem 1.4rem;
+  background:rgba(255,255,255,0.8); border:1.5px solid var(--pink-mid);
+  border-radius:50px; color:var(--rose);
+  font-family:'Dancing Script',cursive; font-size:1.1rem;
+  cursor:pointer; transition:all 0.2s; backdrop-filter:blur(8px);
+}
+.back-btn:hover { background:var(--pink-light); transform:translateX(-3px); }
+
+/* ── Timeline: line on left, photos left, text always right ── */
+.timeline { max-width:1000px; margin:2rem auto; padding:0 2rem 0 4rem; position:relative; }
+.timeline::before {
+  content:''; position:absolute;
+  left:4rem; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg,var(--pink-mid),var(--lilac),var(--peach),var(--pink-mid));
+  border-radius:99px;
+}
+
+/* Each row: year badge sits on the line */
+.moment {
+  display: grid;
+  /* Change 220px to 350px */
+  grid-template-columns: 350px 3rem 1fr; 
+  align-items: start;
+  gap: 0 0;
+  margin-bottom: 4.5rem; 
+  position: relative;
+  opacity: 0; 
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.moment.visible { opacity:1; transform:translateY(0); }
+/* override any old odd/even rules */
+.moment:nth-child(odd), .moment:nth-child(even) { flex-direction:unset; }
+
+/* Year badge sits centred on the vertical line */
+.year-badge {
+  position:absolute;
+  left: calc(4rem - 0px); /* aligns with the line */
+  top: 0.6rem;
+  transform: translateX(-50%);
+  background:linear-gradient(135deg,var(--pink-deep),var(--rose));
+  color:#fff; font-family:'Playfair Display',serif; font-weight:700; font-size:0.9rem;
+  padding:0.3rem 1rem; border-radius:50px;
+  box-shadow:0 4px 14px rgba(212,84,122,0.3); z-index:2; white-space:nowrap;
+}
+
+/* Photo stack — left column */
+.moment-photos {
+  grid-column:1; grid-row:1;
+  display:flex; flex-direction:column; gap:0.5rem;
+  padding-top:2.4rem; /* push below year badge */
+  padding-right:1.2rem;
+}
+
+.photo-slot {
+  width:100%; aspect-ratio:4/3;
+  border-radius:14px; overflow:hidden;
+  background:linear-gradient(135deg,var(--pink-light),var(--lavender));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:0.3rem; border:2px dashed var(--pink-mid);
+  font-size:0.72rem; color:var(--text-mid);
+  font-family:'Lato',sans-serif; text-align:center; padding:0.5rem;
+  cursor:pointer; transition:background 0.2s;
+}
+.photo-slot:hover { background:linear-gradient(135deg,var(--pink-mid),var(--lilac)); }
+.photo-slot {
+  width:100%; 
+  aspect-ratio:4/3;
+  border-radius:14px; 
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--pink-light),var(--lavender));
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  border:2px solid rgba(232,113,154,0.3); /* Changed from dashed to solid */
+  transition:transform 0.3s;
+}
+
+.photo-slot img { 
+  width:100%; 
+  height:100%; 
+  object-fit:cover; 
+  display:block; 
+}
+/* Text panel — right column */
+.moment-text {
+  grid-column:3; grid-row:1;
+  background:rgba(255,255,255,0.82);
+  border:1.5px solid rgba(232,113,154,0.2);
+  border-radius:22px; overflow:hidden;
+  box-shadow:0 8px 32px rgba(212,84,122,0.1);
+  backdrop-filter:blur(10px);
+  padding:1.4rem 1.6rem;
+  margin-top:2.4rem; /* align with photos */
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.moment-text:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(212,84,122,0.18); }
+
+.card-year-label { font-family:'Dancing Script',cursive; font-size:1.05rem; color:var(--lilac); margin-bottom:0.5rem; }
+.card-text { 
+  font-family: 'Playfair Display', serif; 
+  font-style: italic; 
+  /* Change to 1.25rem for bigger text */
+  font-size: 1.3rem; 
+  color: var(--text-mid); 
+  line-height: 1.75; 
+  border-left: 3px solid var(--pink-mid); 
+  padding-left: 0.9rem; 
+}
+.write-ph { font-style:normal; font-family:'Lato',sans-serif; font-size:0.85rem; color:#b89ab0; background:var(--pink-light); border-radius:8px; padding:0.6rem 0.8rem; }
+
+/* unused spacer kept for safety */
+.moment-spacer { display:none; }
+/* old moment-card kept for safety */
+.moment-card { display:none; }
+
+.closing { text-align:center; padding:2rem; font-family:'Dancing Script',cursive; font-size:1.8rem; color:var(--rose); }
+
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background:var(--pink-light); }
+::-webkit-scrollbar-thumb { background:var(--pink-mid); border-radius:99px; }
+
+@media(max-width:700px){
+  .timeline { padding:0 1rem 0 2.5rem; }
+  .timeline::before { left:2.5rem; }
+  .year-badge { left:2.5rem; font-size:0.78rem; }
+  .moment { grid-template-columns:1fr; }
+  .moment-photos { grid-column:1; padding-right:0; }
+  .moment-text { grid-column:1; margin-top:0.5rem; }
+  .corner-decor { width:110px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+<div id="float-layer"></div>
+
+<!-- ══════════ HOME PAGE ══════════ -->
+<section id="homepage">
+
+  <svg class="corner-decor tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="35" cy="35" r="22" fill="#f7b8d3" opacity=".6"/>
+    <circle cx="72" cy="18" r="14" fill="#e8719a" opacity=".42"/>
+    <circle cx="14" cy="80" r="17" fill="#c8a8e9" opacity=".52"/>
+    <circle cx="98" cy="50" r="10" fill="#ffd6c0" opacity=".7"/>
+    <path d="M6 6 Q56 0 76 56 Q36 76 6 6Z" fill="#fde8f0" opacity=".38"/>
+  </svg>
+  <svg class="corner-decor tr" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="35" cy="35" r="22" fill="#f7b8d3" opacity=".6"/>
+    <circle cx="72" cy="18" r="14" fill="#e8719a" opacity=".42"/>
+    <circle cx="14" cy="80" r="17" fill="#c8a8e9" opacity=".52"/>
+    <circle cx="98" cy="50" r="10" fill="#ffd6c0" opacity=".7"/>
+    <path d="M6 6 Q56 0 76 56 Q36 76 6 6Z" fill="#fde8f0" opacity=".38"/>
+  </svg>
+  <svg class="corner-decor bl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="35" cy="35" r="22" fill="#ffd6c0" opacity=".6"/>
+    <circle cx="72" cy="18" r="14" fill="#c8a8e9" opacity=".42"/>
+    <circle cx="14" cy="80" r="17" fill="#f7b8d3" opacity=".52"/>
+    <circle cx="98" cy="50" r="10" fill="#e8719a" opacity=".7"/>
+  </svg>
+  <svg class="corner-decor br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="35" cy="35" r="22" fill="#ffd6c0" opacity=".6"/>
+    <circle cx="72" cy="18" r="14" fill="#c8a8e9" opacity=".42"/>
+    <circle cx="14" cy="80" r="17" fill="#f7b8d3" opacity=".52"/>
+    <circle cx="98" cy="50" r="10" fill="#e8719a" opacity=".7"/>
+  </svg>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Happy<br>
+      <span class="italic">Mother's</span><br>
+      Day
+    </h1>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="heart-icon">&#9829;</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="message-card">
+      Every memory we've made together is a treasure I'll carry forever.
+      Today, I want to take you on a journey through the moments
+      that mean the most to me &mdash; the moments <em>we</em> built together.
+    </div>
+
+    <button class="cta-btn" onclick="startJourney()">
+      Begin Our Journey
+      <span class="btn-arrow">&#8594;</span>
+    </button>
+  </div>
+
+</section>
+
+
+<!-- ══════════ JOURNEY PAGE ══════════ -->
+<section id="journey-page">
+
+  <button class="back-btn" onclick="goHome()">&#8592; Back to Home</button>
+
+  <div class="journey-header">
+    <h2>Our Story Through the Years</h2>
+    <p>16 years of love, laughter &amp; beautiful memories</p>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 1 · photos LEFT of line, text RIGHT -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm13.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm20.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm21.jpeg" alt="Memory"></div>
+</div>
+      <div class="year-badge">2010</div>
+      <div class="moment-text">
+        <p class="card-year-label">The start</p>
+        <div class="card-text write-ph">Your first day as a mother! Were you ready to give up your party life and settle for one as a caregiver instead? 
+            Did you have any aspirations for her? What did you imagine your daugther to be? Did you think she would be as beautiful, charming and amazing as she is today? What did you want her to be; a doctor, a lawyer?</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm8.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm9.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm10.jpeg" alt="Memory"></div>
+</div>
+      <div class="year-badge">2011</div>
+      <div class="moment-text">
+        <p class="card-year-label">The First Year</p>
+        <div class="card-text write-ph">Your first full of year of being a mom. Feeling old yet? Were you not
+            concerned one bit that your daugther wasn't exaclty the smallest in size? What if she grew into 
+            a ball...There should have been a moment where you told yourself to stop feeding her...right?
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm17.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm18.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm19.jpeg" alt="Memory"></div>
+</div>
+      <div class="year-badge">2014</div>
+      <div class="moment-text">
+        <p class="card-year-label">A year full of wonder</p>
+        <div class="card-text write-ph">Your second daughter! This one didnt come with alot of hair did she...who would have known
+            your two daugthers would grow up to be so starkly different. It does bring balance to the family though. All four of us, the 
+            hot-tempered family. (Admit it) Did it ever occur to you that this was YOUR family? You built this, isnt that amazing?
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm22.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm23.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm5.jpg" alt="Memory"></div>
+</div>
+      <div class="year-badge">Covid-19 Pandemic</div>
+      <div class="moment-text">
+        <p class="card-year-label">Palette Bites</p>
+        <div class="card-text write-ph">I remember we built a string out of tissue to cut for the opening of Pallete Bites? 
+            It was so exciting to me, because my mom was not only a "worker" but a baker too. so cool. Covid had its pros and cons, and i think
+            this was a "pros". Without the lock down you would have never discovered your passion for baking and i wouldnt be able to enjoy your signature 
+            tarts and marble cakes now.  
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm6.jpg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm32.JPG" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm33.JPG" alt="Memory"></div>
+</div>
+      <div class="year-badge">Extras</div>
+      <div class="moment-text">
+        <p class="card-year-label">Memories to cherish</p>
+        <div class="card-text write-ph">7 and 3. No more changing diapers! Wait no you didnt do that, aunties did. 
+            
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm29.JPG" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm30.JPG" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm31.JPG" alt="Memory"></div>
+</div>
+      <div class="year-badge">Special Dinners</div>
+      <div class="moment-text">
+        <p class="card-year-label">wayyyy too much carbs</p>
+        <div class="card-text write-ph">Once every week, you make a special meal for the family. And i look forwards to the food
+            and all the weight I would gain after, every. single. time. Your food is delicious &dash; not that aunties isnt &dash; but yours is 
+            special because its made by you. No matter what cuisine it is always scrumptious and super yummy. I just want you to know that i appreciate 
+            the time you take out of that day to do it for all us. God knows Papa is hopeless in the kitchen so only you could ever do it for us. I hope when i grow 
+            up this doesnt change and my kids could have a taste of your cooking too. I know that if i ever travel overseas, your food will be what i miss everyday. I look forward to the next meal you
+            make for the family.  
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm27.jpg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm28.jpg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm34.jpg" alt="Memory"></div>
+</div>
+      <div class="year-badge">Book Launch</div>
+      <div class="moment-text">
+        <p class="card-year-label">"My mom is so cool"</p>
+        <div class="card-text write-ph">I was sosososososo proud of you that day at your launch. I know hown much time and 
+            effort you spent working on it, and i couldnt believe it was finally done. I remember when you first brough up the idea
+            and i couldnt really wrap my head around it. My mom? An author? Nah. Your english and writing skills could have never made it. Fortunately for you 
+            people charge you for them to write for you so...Anyways. I was so proud of you that day that my words were more incoherent that Leia's speech which was
+            honestly quite embarrasing but then again whatever because it was your day. I feel so much pride when I say my mom wrote a book, my friends
+            already know youre cool but writing a book? Wow, that just took you to a whole new level. That day, i knew my mom wasnt the 
+            average singaporean auntie but an amazing, talented beautiful shucking genius(ehhh). 
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm24.jpg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm25.jpg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm26.jpg" alt="Memory"></div>
+</div>
+      <div class="year-badge">Trips</div>
+      <div class="moment-text">
+        <p class="card-year-label">Japan, Korea and China</p>
+        <div class="card-text write-ph">Our trips togther have been one of my favourite memories of us so far. From visting the stinky japan volcano to the photoshoot
+            in korea to the shopping trip in china. I cherish every memory made, even the so good ones; when i fell alseep standing because i was so exhausted, or when my foot cramped so
+            much i laughed and cried at the same time, or even when i couldnt stop looking at myself in the mirror after the photoshoot, Aarav being the best guide throughout korea etc. I hope you remember those...
+            Anyways, i wouldnt trade these memories away for anything. I hope when im as old as i you i can still recall what you did for me so i could do the same for my kids. Hope you take me to more places 
+            and we find new places to go, Greece next?
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 — Present -->
+    <div class="moment">
+      <div class="moment-photos">
+  <div class="photo-slot"><img src="Mm11.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm12.jpeg" alt="Memory"></div>
+  <div class="photo-slot"><img src="Mm3.jpg" alt="Memory"></div>
+</div>
+      <div class="year-badge">A message from sarah to cindy.</div>
+      <div class="moment-text" style="border-color:rgba(212,84,122,0.45);box-shadow:0 10px 40px rgba(212,84,122,0.2);">
+        <p class="card-year-label">Today &amp; always</p>
+        <div class="card-text write-ph">Dear Mom, i could never imagine a life without you. Everyday you inspire me in so many ways; 
+            from your looks to your language. There is no better mother than you. Althought sometimes we dont see eye to eye, we always overcome those challenges 
+            togther. Well mostly, no one aplogizes and we dont talk for a while then we forget about it. But thats okay. You have been my idol and mentor for all my life
+            and i hope you will be forever. We will bond over guys; whether it be your much too young idols or my future boyfriends, and gossip over papa's horrible atrocious 
+            styles and ever growing white hair. You will always be MY mommy forver for all of eternity, in this life and the next. There is no one else who will feed me milk
+            made from her own tits, and try to check my pit hair every once in a while. I thank you everyday for the body you have given me but more importantly the life you have 
+            blessed me with. I love you spoiling me and encourage you to more of that. I'll take a hug and kiss once in a while. Well, thats all Happy Mothers Day to the best one in the world.
+
+            I LOVE YOU TO THE MOON AND BACK.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closing">Thank you for every single moment, Mommy.</div>
+
+  <div style="text-align:center;padding-bottom:3rem;">
+    <button class="cta-btn" onclick="goHome()" style="font-size:1.1rem;padding:0.8rem 2rem;">
+      Back to the Beginning &nbsp;&#8592;
+    </button>
+  </div>
+
+</section>
+
+<script>
+/* ──────────────────────────────────────
+   FLOATING BACKGROUND
+   Photos: Mday1.jpg … Mday15.jpg
+   Place them in the same folder as this file.
+   Supported: .jpg  Change extension below if you use .png/.webp etc.
+────────────────────────────────────── */
+const PHOTO_EXT   = '.jpg'; // ← change if your files are .png or .webp
+const PHOTO_COUNT = 15;
+const EMOJIS      = ['🌸','🌺','🌼','🌷','🍀','🦋','💕','✨','💫','🧚','💖','🌸','🌺','🌼','🌷'];
+
+function buildFloatLayer() {
+  const layer = document.getElementById('float-layer');
+
+  // Build item list: one emoji + one photo per slot (15 each), then shuffle
+  const items = [];
+  for (let i = 1; i <= PHOTO_COUNT; i++) {
+    items.push({ type: 'photo', src: `Mday${i}${PHOTO_EXT}` });
+    items.push({ type: 'emoji', val: EMOJIS[(i - 1) % EMOJIS.length] });
+  }
+
+  // Fisher-Yates shuffle
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+
+  items.forEach((item) => {
+    const el = document.createElement('div');
+    const duration = 13 + Math.random() * 14;       // 13–27 s
+    const delay    = -(Math.random() * duration);    // pre-stagger
+    const leftPct  = (Math.random() * 94) + '%';
+    const drift    = ((Math.random() - 0.5) * 100) + 'px';
+
+    el.className   = 'floater ' + item.type;
+    el.style.left  = leftPct;
+    el.style.setProperty('--drift', drift);
+    el.style.animationDuration = duration + 's';
+    el.style.animationDelay    = delay + 's';
+
+    if (item.type === 'emoji') {
+      el.textContent  = item.val;
+      el.style.fontSize = (1.0 + Math.random() * 1.2) + 'rem';
+    } else {
+      const img  = document.createElement('img');
+      img.src    = item.src;
+      img.alt    = '';
+      const size = Math.round(65 + Math.random() * 65); // 65–130 px
+      img.style.width  = size + 'px';
+      img.style.height = size + 'px';
+      img.onerror = () => el.remove(); // gracefully hide missing files
+      el.appendChild(img);
+    }
+
+    layer.appendChild(el);
+  });
+}
+
+buildFloatLayer();
+
+/* ── Page transitions ── */
+function startJourney() {
+  document.getElementById('homepage').style.display = 'none';
+  const jp = document.getElementById('journey-page');
+  jp.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  observeMoments();
+}
+
+function goHome() {
+  document.getElementById('journey-page').classList.remove('active');
+  document.getElementById('homepage').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Scroll reveal ── */
+function observeMoments() {
+  const cards = document.querySelectorAll('.moment');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(c => io.observe(c));
+}
+
+/* ── Click photo slot → file picker ── */
+document.addEventListener('click', e => {
+  const slot = e.target.closest('.photo-slot');
+  if (!slot) return;
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = () => {
+    const file = input.files[0];
+    if (!file) return;
+    slot.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Memory" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`;
+  };
+  input.click();
+});
+
+/* ── Subtle coloured dot cursor trail ── */
+(function () {
+  const palette = ['#f7b8d3','#e8719a','#c8a8e9','#ffd6c0','#d4547a','#f5c842'];
+  let throttle  = false;
+  document.addEventListener('mousemove', e => {
+    if (throttle) return;
+    throttle = true;
+    setTimeout(() => throttle = false, 90);
+    const dot  = document.createElement('div');
+    const size = 5 + Math.random() * 6;
+    dot.style.cssText = `
+      position:fixed;left:${e.clientX}px;top:${e.clientY}px;
+      width:${size}px;height:${size}px;border-radius:50%;
+      background:${palette[Math.floor(Math.random() * palette.length)]};
+      pointer-events:none;z-index:9999;opacity:0.8;
+      transition:transform 0.7s ease,opacity 0.7s ease;
+      transform:translate(-50%,-50%);
+    `;
+    document.body.appendChild(dot);
+    requestAnimationFrame(() => {
+      dot.style.transform = `translate(-50%,${-28 - Math.random() * 20}px) scale(0)`;
+      dot.style.opacity   = '0';
+    });
+    setTimeout(() => dot.remove(), 760);
+  });
+})();
+</script>
+</body>
+</html>
